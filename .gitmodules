@@ -4,3 +4,6 @@
 [submodule "Go"]
 	path = Go
 	url = https://github.com/go-swagger/go-swagger.git
+[submodule "go/src/github.com/go-swagger/go-swagger"]
+	path = go/src/github.com/go-swagger/go-swagger
+	url = https://github.com/HegdeVandana/App.git
