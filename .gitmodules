@@ -1,3 +1,6 @@
 [submodule "go-swagger"]
 	path = go-swagger
 	url = /home/venkat/go/src/github.com/go-swagger/go-swagger/
+[submodule "Go"]
+	path = Go
+	url = https://github.com/go-swagger/go-swagger.git
