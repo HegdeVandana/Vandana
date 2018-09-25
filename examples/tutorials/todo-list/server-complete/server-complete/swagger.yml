@@ -1,7 +1,7 @@
 swagger: "2.0"
 info:
-  description: The product of a tutorial on goswagger.io
-  title: A To Do list application
+  description: APPLICATION
+  title: WANCLOUDS
   version: 1.0.0
 consumes:
 - application/io.goswagger.examples.todo-list.v1+json
@@ -25,35 +25,19 @@ paths:
           type: integer
           format: int32
           default: 20
+                   
       responses:
         200:
           description: list the todo operations
           schema:
             type: array
             items:
-              $ref: "#/definitions/item"
+              $ref: "#/definitions/profile" 
         default:
           description: generic error response
           schema:
             $ref: "#/definitions/error"
-    post:
-      tags:
-        - todos
-      operationId: addOne
-      parameters:
-        - name: body
-          in: body
-          schema:
-            $ref: "#/definitions/item"
-      responses:
-        201:
-          description: Created
-          schema:
-            $ref: "#/definitions/item"
-        default:
-          description: error
-          schema:
-            $ref: "#/definitions/error"
+
   /{id}:
     parameters:
       - type: integer
@@ -61,51 +45,38 @@ paths:
         name: id
         in: path
         required: true
-    put:
+    get:
       tags:
         - todos
-      operationId: updateOne
+      operationId: onetodos
       parameters:
         - name: body
           in: body
           schema:
-            $ref: "#/definitions/item"
+            $ref: "#/definitions/profile"
       responses:
         200:
           description: OK
           schema:
-            $ref: "#/definitions/item"
+            $ref: "#/definitions/profile"
         default:
           description: error
           schema:
-            $ref: "#/definitions/error"
-    delete:
-      tags:
-        - todos
-      operationId: destroyOne
-      responses:
-        204:
-          description: Deleted
-        default:
-          description: error
-          schema:
-            $ref: "#/definitions/error"
+            $ref: "#/definitions/error"   
+ 
 definitions:
-  item:
+ profile:
     type: object
-    required:
-      - description
     properties:
       id:
         type: integer
         format: int64
-        readOnly: true
-      description:
+      name:
         type: string
-        minLength: 1
-      completed:
-        type: boolean
-  error:
+      email:
+        type: string 
+      
+ error:
     type: object
     required:
       - message
@@ -115,3 +86,4 @@ definitions:
         format: int64
       message:
         type: string
+ 

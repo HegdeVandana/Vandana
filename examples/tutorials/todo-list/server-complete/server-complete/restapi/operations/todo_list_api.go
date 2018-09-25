@@ -39,22 +39,16 @@ func NewTodoListAPI(spec *loads.Document) *TodoListAPI {
 		BearerAuthenticator: security.BearerAuth,
 		JSONConsumer:        runtime.JSONConsumer(),
 		JSONProducer:        runtime.JSONProducer(),
-		TodosAddOneHandler: todos.AddOneHandlerFunc(func(params todos.AddOneParams) middleware.Responder {
-			return middleware.NotImplemented("operation TodosAddOne has not yet been implemented")
-		}),
-		TodosDestroyOneHandler: todos.DestroyOneHandlerFunc(func(params todos.DestroyOneParams) middleware.Responder {
-			return middleware.NotImplemented("operation TodosDestroyOne has not yet been implemented")
-		}),
 		TodosFindTodosHandler: todos.FindTodosHandlerFunc(func(params todos.FindTodosParams) middleware.Responder {
 			return middleware.NotImplemented("operation TodosFindTodos has not yet been implemented")
 		}),
-		TodosUpdateOneHandler: todos.UpdateOneHandlerFunc(func(params todos.UpdateOneParams) middleware.Responder {
-			return middleware.NotImplemented("operation TodosUpdateOne has not yet been implemented")
+		TodosOnetodosHandler: todos.OnetodosHandlerFunc(func(params todos.OnetodosParams) middleware.Responder {
+			return middleware.NotImplemented("operation TodosOnetodos has not yet been implemented")
 		}),
 	}
 }
 
-/*TodoListAPI The product of a tutorial on goswagger.io */
+/*TodoListAPI APPLICATION */
 type TodoListAPI struct {
 	spec            *loads.Document
 	context         *middleware.Context
@@ -82,14 +76,10 @@ type TodoListAPI struct {
 	// JSONProducer registers a producer for a "application/io.goswagger.examples.todo-list.v1+json" mime type
 	JSONProducer runtime.Producer
 
-	// TodosAddOneHandler sets the operation handler for the add one operation
-	TodosAddOneHandler todos.AddOneHandler
-	// TodosDestroyOneHandler sets the operation handler for the destroy one operation
-	TodosDestroyOneHandler todos.DestroyOneHandler
 	// TodosFindTodosHandler sets the operation handler for the find todos operation
 	TodosFindTodosHandler todos.FindTodosHandler
-	// TodosUpdateOneHandler sets the operation handler for the update one operation
-	TodosUpdateOneHandler todos.UpdateOneHandler
+	// TodosOnetodosHandler sets the operation handler for the onetodos operation
+	TodosOnetodosHandler todos.OnetodosHandler
 
 	// ServeError is called when an error is received, there is a default handler
 	// but you can set your own with this
@@ -153,20 +143,12 @@ func (o *TodoListAPI) Validate() error {
 		unregistered = append(unregistered, "JSONProducer")
 	}
 
-	if o.TodosAddOneHandler == nil {
-		unregistered = append(unregistered, "todos.AddOneHandler")
-	}
-
-	if o.TodosDestroyOneHandler == nil {
-		unregistered = append(unregistered, "todos.DestroyOneHandler")
-	}
-
 	if o.TodosFindTodosHandler == nil {
 		unregistered = append(unregistered, "todos.FindTodosHandler")
 	}
 
-	if o.TodosUpdateOneHandler == nil {
-		unregistered = append(unregistered, "todos.UpdateOneHandler")
+	if o.TodosOnetodosHandler == nil {
+		unregistered = append(unregistered, "todos.OnetodosHandler")
 	}
 
 	if len(unregistered) > 0 {
@@ -267,25 +249,15 @@ func (o *TodoListAPI) initHandlerCache() {
 		o.handlers = make(map[string]map[string]http.Handler)
 	}
 
-	if o.handlers["POST"] == nil {
-		o.handlers["POST"] = make(map[string]http.Handler)
-	}
-	o.handlers["POST"][""] = todos.NewAddOne(o.context, o.TodosAddOneHandler)
-
-	if o.handlers["DELETE"] == nil {
-		o.handlers["DELETE"] = make(map[string]http.Handler)
-	}
-	o.handlers["DELETE"]["/{id}"] = todos.NewDestroyOne(o.context, o.TodosDestroyOneHandler)
-
 	if o.handlers["GET"] == nil {
 		o.handlers["GET"] = make(map[string]http.Handler)
 	}
 	o.handlers["GET"][""] = todos.NewFindTodos(o.context, o.TodosFindTodosHandler)
 
-	if o.handlers["PUT"] == nil {
-		o.handlers["PUT"] = make(map[string]http.Handler)
+	if o.handlers["GET"] == nil {
+		o.handlers["GET"] = make(map[string]http.Handler)
 	}
-	o.handlers["PUT"]["/{id}"] = todos.NewUpdateOne(o.context, o.TodosUpdateOneHandler)
+	o.handlers["GET"]["/{id}"] = todos.NewOnetodos(o.context, o.TodosOnetodosHandler)
 
 }
 

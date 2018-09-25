@@ -29,8 +29,8 @@ func init() {
   ],
   "swagger": "2.0",
   "info": {
-    "description": "The product of a tutorial on goswagger.io",
-    "title": "A To Do list application",
+    "description": "APPLICATION",
+    "title": "WANCLOUDS",
     "version": "1.0.0"
   },
   "paths": {
@@ -61,7 +61,7 @@ func init() {
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/item"
+                "$ref": "#/definitions/profile"
               }
             }
           },
@@ -72,49 +72,20 @@ func init() {
             }
           }
         }
-      },
-      "post": {
-        "tags": [
-          "todos"
-        ],
-        "operationId": "addOne",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "$ref": "#/definitions/item"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created",
-            "schema": {
-              "$ref": "#/definitions/item"
-            }
-          },
-          "default": {
-            "description": "error",
-            "schema": {
-              "$ref": "#/definitions/error"
-            }
-          }
-        }
       }
     },
     "/{id}": {
-      "put": {
+      "get": {
         "tags": [
           "todos"
         ],
-        "operationId": "updateOne",
+        "operationId": "onetodos",
         "parameters": [
           {
             "name": "body",
             "in": "body",
             "schema": {
-              "$ref": "#/definitions/item"
+              "$ref": "#/definitions/profile"
             }
           }
         ],
@@ -122,25 +93,8 @@ func init() {
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/item"
+              "$ref": "#/definitions/profile"
             }
-          },
-          "default": {
-            "description": "error",
-            "schema": {
-              "$ref": "#/definitions/error"
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "todos"
-        ],
-        "operationId": "destroyOne",
-        "responses": {
-          "204": {
-            "description": "Deleted"
           },
           "default": {
             "description": "error",
@@ -177,23 +131,18 @@ func init() {
         }
       }
     },
-    "item": {
+    "profile": {
       "type": "object",
-      "required": [
-        "description"
-      ],
       "properties": {
-        "completed": {
-          "type": "boolean"
-        },
-        "description": {
-          "type": "string",
-          "minLength": 1
+        "email": {
+          "type": "string"
         },
         "id": {
           "type": "integer",
-          "format": "int64",
-          "readOnly": true
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
         }
       }
     }
@@ -211,8 +160,8 @@ func init() {
   ],
   "swagger": "2.0",
   "info": {
-    "description": "The product of a tutorial on goswagger.io",
-    "title": "A To Do list application",
+    "description": "APPLICATION",
+    "title": "WANCLOUDS",
     "version": "1.0.0"
   },
   "paths": {
@@ -243,7 +192,7 @@ func init() {
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/item"
+                "$ref": "#/definitions/profile"
               }
             }
           },
@@ -254,49 +203,20 @@ func init() {
             }
           }
         }
-      },
-      "post": {
-        "tags": [
-          "todos"
-        ],
-        "operationId": "addOne",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "$ref": "#/definitions/item"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created",
-            "schema": {
-              "$ref": "#/definitions/item"
-            }
-          },
-          "default": {
-            "description": "error",
-            "schema": {
-              "$ref": "#/definitions/error"
-            }
-          }
-        }
       }
     },
     "/{id}": {
-      "put": {
+      "get": {
         "tags": [
           "todos"
         ],
-        "operationId": "updateOne",
+        "operationId": "onetodos",
         "parameters": [
           {
             "name": "body",
             "in": "body",
             "schema": {
-              "$ref": "#/definitions/item"
+              "$ref": "#/definitions/profile"
             }
           }
         ],
@@ -304,25 +224,8 @@ func init() {
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/item"
+              "$ref": "#/definitions/profile"
             }
-          },
-          "default": {
-            "description": "error",
-            "schema": {
-              "$ref": "#/definitions/error"
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "todos"
-        ],
-        "operationId": "destroyOne",
-        "responses": {
-          "204": {
-            "description": "Deleted"
           },
           "default": {
             "description": "error",
@@ -359,23 +262,18 @@ func init() {
         }
       }
     },
-    "item": {
+    "profile": {
       "type": "object",
-      "required": [
-        "description"
-      ],
       "properties": {
-        "completed": {
-          "type": "boolean"
-        },
-        "description": {
-          "type": "string",
-          "minLength": 1
+        "email": {
+          "type": "string"
         },
         "id": {
           "type": "integer",
-          "format": "int64",
-          "readOnly": true
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
         }
       }
     }
